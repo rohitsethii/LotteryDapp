@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Lottery</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body background="ethe.jpg" style="padding-left: 2%; padding-top:2%; padding-right: 2%; color:white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+  <b>
+      <h4 id="candidateNameDisplay"> Balance :  <span style="color:red" id="bal"></span>  wei </h4>
+     <div class="container" style="width: 650px;">
+      <div class="row">
+        <div class="col-lg-12 text-center" >
+          <h1 >Let's Play a Lottery</h1>
+          <hr/>
+          <div id="content">
+            <h4 style="align-content: left" id="candidateNameDisplay">Try your Luck in just <span style = "color: red";>1000000!!!</span> wei</h4>
+            <hr/>
+              <div class="form-group" style="display:inline;">
+                  <div class="input-group" style="padding-left: 12em">
+      <input style="width: 15em" class="form-control input-lg"  id="val" placeholder="enter amount in wei- 1000000"> </input> 
+               <br>
+                <br><br>
+                  <input style="width: 15em" class="form-control input-lg" name="candidateName" id="_guess" placeholder="enter number from 1 to 20"></input>
+                <br>  
+                 <button class="btn btn-primary btn-lg" id="makeaguess">Make a Guess</button>
+								<h2 id="balance"></h2>								
+								</div>
+              </div>
+             </div>
+        </div>
+      </div>
+		</div><br><br><br>
+		<div class="col-lg-12 text-left" id="eth" style="width: 50%"; >
+		<H1>TOTAL ETHERS : <br> <span id="total" style="color:red"> </span> Wei</H1>
+		</div>
+		<div style="float: right;">
+<br><br><br>
+<h3 >Here is Lucky Number => <span id="num" style="color:red"></span>  </h3>
+<button id="draw" class="btn btn-primary btn-lg" >Draw Winner</button>
+<button  id="getlucky" class="btn btn-primary btn-lg" >Get Lucky Number</button>
+<button id="distribute" class="btn btn-primary btn-lg" >distributeReward</button>
+</div>
+<br><br><br><br><br>
+<div id="all" style="width:50%";>
+<br>
+	<h3>Participants:</h3>
+	<h4>
+<ol>
+  <li> <span id="0"></span> => <span style="color:red" id="a"></span></li>
+	<li><h4 id="1"></h4></li>
+	<li><h4 id="2"></h4></li>
+	<li><h4 id="3"></h4></li>
+	<li><h4 id="4"></h4></li>
+
+</ol>
+</h4>
+
+</div>
+</b>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/web3.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/truffle-contract.min.js"></script>
+  
+	
+  </body>
+</html>
