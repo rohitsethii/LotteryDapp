@@ -5,18 +5,28 @@ Lottery DApp-is a lottery web app in which a user can guess a number between 1 a
 # Features:
 
 • Works with the Metamask wallet.
+
 • A simple but functional front-end built with Bootstrap.
+
 • Integration with all major Ethereum testnets.
+
 • A blockchain-based randomness generator to ensure fairness.
 
 
 # Technologies Used:
 
  Solidity
+
  Truffle
+
  Ganache-Cli
+
  Web3.js
+
  Node.js
+
  HTML/CSS
+
  Bootstrap
+
  JQuery
