@@ -49,11 +49,11 @@ contract Lottery{
     
     
   modifier onlyowner(){
-    require(msg.sender==owner,"only owner can call");
+    require(msg.sender == owner,"only owner can call");
     _;
   }
   modifier notowner(){
-    require(msg.sender!=owner,"owner is not allowed");
+    require(msg.sender != owner,"owner is not allowed");
     _;
   }
   modifier alreadyDrawn(){
@@ -61,7 +61,7 @@ contract Lottery{
     _;
   }
   modifier lotteryActive{
-    require(active==true,"lottery is not open");
+    require(active == true,"lottery is not open");
     _;
   }
   modifier isHuman() {
@@ -92,7 +92,7 @@ contract Lottery{
   payable 
   returns(bool){
     require(guess != 0x20,"cannot be empty");
-    require(guess<=20,"number should be between 0 and 20");
+    require(guess <= 20,"number should be between 0 and 20");
     require(msg.value == price,"price should be 1000000");
     allholders.push(msg.sender);
     holders[playerID] = msg.sender;
