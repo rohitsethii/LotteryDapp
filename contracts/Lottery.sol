@@ -1,23 +1,25 @@
 pragma solidity ^0.4.25;
 
 import "./lib/Address.sol";
+import "./lib/SafeMath.sol";
 
 contract Lottery{
     
   
   address owner;
   address winner;
-  address[] public allholders;
-  address[] public winners;
+  address[] allHolders;
+  address[] winners;
+  using Address for address;
   
   uint price;
-  uint[] public allguess;
-  uint count;
-  uint public w;
-  uint public Total;
+  uint[] allGuess;
+  uint totalWinners;
+  uint luckyNumber;
+  uint totalAmount;
   uint playerID;
+  using SafeMath for uint;
   
-  using Address for address;
   bool winnerDrawn;
   bool active;
   
@@ -26,10 +28,9 @@ contract Lottery{
     
 
 
-  mapping (uint => address) public holders;      // PlayerID => participant_address
-  mapping (address => uint) public Guesses;      //participant_address => guess
+  mapping (uint => address) holders;      // PlayerID => participant_address
+  mapping (address => uint) Guesses;      //participant_address => guess
   
-    
     
 
 //-----------------------------------------Events----------------------------------------
@@ -41,7 +42,6 @@ contract Lottery{
       uint indexed _guess,
       uint value
   );
-    
     
     
 //-----------------------------------------Modifiers------------------------------------    
@@ -94,12 +94,12 @@ contract Lottery{
     require(guess != 0x20,"cannot be empty");
     require(guess <= 20,"number should be between 0 and 20");
     require(msg.value == price,"price should be 1000000");
-    allholders.push(msg.sender);
+    allHolders.push(msg.sender);
     holders[playerID] = msg.sender;
-    playerID++;
-    allguess.push(guess);
+    playerID.add(1);
+    allGuess.push(guess);
     Guesses[msg.sender] = guess;
-    Total += msg.value;
+    totalAmount.add(msg.value);
     emit Guess(msg.sender,playerID,guess,msg.value);
     return true;
   }       
@@ -112,17 +112,16 @@ contract Lottery{
   isHuman
   returns(address[]) {
       
-    w = uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%21);
-    for(uint i = 0; i < allholders.length; i++){
-      if( w == allguess[i] ){
-        winners.push(allholders[i]);
-        count++;
+    luckyNumber = uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%21);
+    for(uint i = 0; i < allHolders.length; i++){
+      if( luckyNumber == allGuess[i] ){
+        winners.push(allHolders[i]);
+        totalWinners.add(1);
       }
     }
     winnerDrawn = true;
     return winners;
   }
-  
   
       
   function distributeReward()
@@ -130,14 +129,47 @@ contract Lottery{
   onlyowner
   lotteryActive
   {
-    if(count == 0){
+    if(totalWinners == 0){
       selfdestruct(owner);
     }
-    uint winnerreward = (address(this).balance/2)/count;
+    uint winnerreward = (address(this).balance.div(2)).div(totalWinners);
     for(uint j = 0;j < winners.length;j++){ 
       winners[j].transfer(winnerreward);
         
     }
     selfdestruct(owner);
   }
+  
+  
+//------------------------------------getters-----------------------------------------------
+
+
+
+  function getHolders() public view returns(address[]) {
+    return allHolders;
+  }
+  
+  function getWinners() public view returns(address[]) {
+    return winners;
+  }
+  
+  function getTotalWinners() public view returns(uint) {
+    return totalWinners;
+  }
+  
+  function getLuckyNumber() public view returns(uint) {
+    return luckyNumber;
+  }
+  
+  function getTotalAmount() public view returns(uint) {
+    return totalAmount;
+  }
+  
+  function getHoldersAddress(uint playerId) public view returns(address) {
+    return holders[playerId];
+  }
+  
+  function getGuess(address player) public view returns(uint) {
+    return Guesses[player];
+  }  
 }
