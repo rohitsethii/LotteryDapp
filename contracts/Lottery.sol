@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.4.24;
 
 import "./lib/Address.sol";
 import "./lib/SafeMath.sol";
@@ -105,7 +105,7 @@ contract Lottery{
   }       
       
     
-  function drawwinner()
+  function drawWinner()
   public 
   onlyowner
   alreadyDrawn
@@ -125,7 +125,7 @@ contract Lottery{
   
       
   function distributeReward()
-  public
+  public  
   onlyowner
   lotteryActive
   {
