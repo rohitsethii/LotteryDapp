@@ -99,11 +99,11 @@ contract Lottery{
     playerID.add(1);
     allGuess.push(guess);
     Guesses[msg.sender] = guess;
-    totalAmount.add(msg.value);
+    totalAmount = totalAmount.add(msg.value);
     emit Guess(msg.sender,playerID,guess,msg.value);
     return true;
   }       
-      
+       
     
   function drawWinner()
   public 

@@ -202,10 +202,10 @@ var abiArray = [
   }
 ];
 
-var from = "/*address here*/";
-var privateKey = "/*private key here here*/";
+var from = "address here";
+var privateKey = "private key here";
 
-var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/_infurakey"));
+var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/12fcd40314a849f1a2467d9d2269b65b"));
 var contract = web3.eth.contract(abiArray).at(contractAddress);
 var number = web3.eth.blockNumber;
 var count = web3.eth.getTransactionCount(from);
@@ -216,8 +216,9 @@ var rawTransaction = {
         "gasLimit": web3.toHex(500000),
         "to": contractAddress, 
         "value": web3.toHex(1000000), //sends the amount of ether _to address
-        "data": contract.makeGuess.getData(4,{
-                from: from,value:1000000
+        "data": contract.makeGuess.getData(22,{
+                from: from,
+                value:1000000
                 }),
         "chainId": "0x04" //rinkeby id 
 }
