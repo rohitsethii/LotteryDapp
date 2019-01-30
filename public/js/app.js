@@ -9,8 +9,19 @@ App = {
 	  	return App.initWeb3();
 	},
   
-	initWeb3: function() {
-
+	initWeb3:async function() {
+		if (window.ethereum) {
+        	window.web3 = new Web3(ethereum);
+        	web3 = window.web3;
+        	try {
+          		// Request account access if needed
+          		await ethereum.enable().then(console.log);
+					App.web3Provider = web3.currentProvider;
+					console.log(App.web3Provider);
+           		} catch (error) {
+          				console.log("Something went wrong..");
+        			}
+      		}
 		if (typeof web3 !== 'undefined') {
 			App.web3Provider = web3.currentProvider;
 			web3 = new Web3(web3.currentProvider);
@@ -112,16 +123,23 @@ App = {
 $(function() {
 	$(window).load(function() {
 		App.init();
-
+		accounts = web3.eth.accounts;
 		web3.eth.getBalance(accounts[0], function(error, result){
 			var c = web3.fromWei(result, 'wei').toString();
 			console.log(c);
 			$('#bal').html(c);
 		});
-		App.gettotal();
-		App.getluckynumber();
+		// App.gettotal();
+		// App.getluckynumber();
+		// App.getparticipants();
 	});
-
+	$(window).ready(function(){
+		setTimeout(function(){
+			App.gettotal();
+			App.getluckynumber();
+			App.getparticipants();
+		},1000);
+	})
 	$('#makeaguess').on('click',function(){
 		App.makeguess();
 	})
