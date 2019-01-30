@@ -129,10 +129,8 @@ $(function() {
 			console.log(c);
 			$('#bal').html(c);
 		});
-		// App.gettotal();
-		// App.getluckynumber();
-		// App.getparticipants();
 	});
+	//wait for metamask access otherwise provider will not be set
 	$(window).ready(function(){
 		setTimeout(function(){
 			App.gettotal();
