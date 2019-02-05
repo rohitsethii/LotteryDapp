@@ -16,18 +16,18 @@ Lottery DApp-is a lottery web app in which a user can guess a number between 1 a
 
 # Technologies Used:
 
- Solidity
+• Solidity
 
- Truffle
+• Truffle
 
- Ganache-Cli
+• Ganache-Cli
 
- Web3.js
+• Web3.js
 
- Node.js
+• Node.js
 
- HTML/CSS
+• HTML/CSS
 
- Bootstrap
+• Bootstrap
 
- JQuery
+• JQuery
