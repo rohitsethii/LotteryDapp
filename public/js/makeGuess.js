@@ -202,10 +202,10 @@ var abiArray = [
   }
 ];
 
-var from = "address here";
-var privateKey = "private key here";
+var from = "enter your ethereum(rinkeby) address here";
+var privateKey = "enter your private key here";
 
-var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/12fcd40314a849f1a2467d9d2269b65b"));
+var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/"));
 var contract = web3.eth.contract(abiArray).at(contractAddress);
 var number = web3.eth.blockNumber;
 var count = web3.eth.getTransactionCount(from);
